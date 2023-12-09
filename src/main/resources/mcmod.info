@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "bio",
+    "name": "Bio",
+    "description": "",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "渣渣120"
+    ],
+    "credits": "stellarlight",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]

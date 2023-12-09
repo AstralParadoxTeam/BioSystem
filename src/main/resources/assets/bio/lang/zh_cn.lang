@@ -1,0 +1,7 @@
+itemGroup.Bio=Bio 系统
+tile.controller_1.name=电子管控制器
+tile.relay.name=中继器
+tile.bumps.name=突触
+tile.nerve_cable.name=神经线缆
+tile.midtorso_nerve_cable.name=中躯神经线缆
+item.transmitters.name=传递器

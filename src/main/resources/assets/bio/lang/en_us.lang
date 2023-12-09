@@ -1,0 +1,7 @@
+itemGroup.Bio=Bio System
+tile.controller_1.name=Controller 1
+tile.relay.name=Relay
+tile.bumps.name=Bumps
+tile.nerve_cable.name=Nerve Cable
+tile.midtorso_nerve_cable.name=MidTorso Nerve Cable
+item.transmitters.name=Transmitters

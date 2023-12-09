@@ -1,0 +1,17 @@
+package org.stellarlight.bio.game.creativeTabs;
+
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
+import org.stellarlight.bio.BioSystem;
+import org.stellarlight.bio.game.init.ModBlocks;
+
+public class BioSystemTab extends CreativeTabs {
+    public BioSystemTab() {
+        super(BioSystem.NAME);
+    }
+
+    @Override
+    public ItemStack getTabIconItem() {
+        return new ItemStack(ModBlocks.BLOCK_CONTROLLER_1);
+    }
+}
