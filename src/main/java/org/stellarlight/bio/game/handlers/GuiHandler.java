@@ -22,7 +22,7 @@ public class GuiHandler implements IGuiHandler {
             RayTraceResult target = player.rayTrace(100, 1);
 
             if (target != null && target.typeOfHit == RayTraceResult.Type.BLOCK) {
-                return new ControllerGui(world.getBlockState(target.getBlockPos()).getBlock());
+                return new ControllerGui(world.getBlockState(target.getBlockPos()).getBlock(), world.getTileEntity(target.getBlockPos()));
             }
         }
 

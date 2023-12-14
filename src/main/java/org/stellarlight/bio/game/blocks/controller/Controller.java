@@ -8,6 +8,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.stellarlight.bio.BioSystem;
 import org.stellarlight.bio.game.blocks.BioBlock;
 import org.stellarlight.bio.game.entities.ControllerEntity;
@@ -27,6 +28,12 @@ public abstract class Controller extends BioBlock implements ITileEntityProvider
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new ControllerEntity();
+    }
+
+    @Override
+    public void register() {
+        super.register();
+        GameRegistry.registerTileEntity(ControllerEntity.class, this.getRegistryName());
     }
 
     @ParametersAreNonnullByDefault

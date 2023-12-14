@@ -25,7 +25,7 @@ public abstract class BioBlock extends Block {
         ModItems.ITEMS.add(item);
     }
 
-    public void registerModel() {
+    public void register() {
         ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
     }
 

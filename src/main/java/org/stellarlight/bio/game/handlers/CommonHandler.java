@@ -7,9 +7,9 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.stellarlight.bio.game.blocks.BioBlock;
-import org.stellarlight.bio.game.items.BioItem;
 import org.stellarlight.bio.game.init.ModBlocks;
 import org.stellarlight.bio.game.init.ModItems;
+import org.stellarlight.bio.game.items.BioItem;
 
 @Mod.EventBusSubscriber
 public class CommonHandler {
@@ -27,7 +27,7 @@ public class CommonHandler {
     public static void onModelRegistration(ModelRegistryEvent event) {
         ModBlocks.BLOCKS.forEach(block -> {
             if (block instanceof BioBlock) {
-                ((BioBlock) block).registerModel();
+                ((BioBlock) block).register();
             }
         });
 
