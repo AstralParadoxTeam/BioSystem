@@ -1,6 +1,6 @@
 itemGroup.Bio=Bio 系统
 tile.controller_1.name=电子管控制器
-tile.relay.name=中继器
+tile.relay_1.name=中继器 α
 tile.bumps.name=突触
 tile.nerve_cable.name=神经线缆
 tile.midtorso_nerve_cable.name=中躯神经线缆

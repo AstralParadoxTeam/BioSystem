@@ -30,8 +30,8 @@ public class ControllerGui extends GuiContainer {
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
         int baseX = width / 2;
-        int baseY = height / 2;
         int width = 200;
+        int baseY = height / 2;
         int height = 100;
 
         drawDefaultBackground();
