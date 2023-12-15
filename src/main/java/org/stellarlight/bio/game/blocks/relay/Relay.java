@@ -41,12 +41,6 @@ public abstract class Relay extends BioBlock implements ITileEntityProvider {
     @ParametersAreNonnullByDefault
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        TileEntity entity = worldIn.getTileEntity(pos);
-
-        if (entity instanceof RelayEntity) {
-            ((RelayEntity) entity).refreshBumps();
-        }
-
         playerIn.openGui(BioSystem.instance, getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }

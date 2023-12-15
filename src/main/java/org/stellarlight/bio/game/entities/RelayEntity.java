@@ -6,14 +6,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import org.stellarlight.bio.game.blocks.relay.Relay;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RelayEntity extends TileEntity {
-    protected Set<BumpsEntity> bindingBumps = new HashSet<>();
+    protected List<BumpsEntity> bindingBumps = new ArrayList<>();
     protected int maxBindableBumps = 0;
 
-    public Set<BumpsEntity> getBindingBumps() {
+    public List<BumpsEntity> getBindingBumps() {
         return bindingBumps;
     }
 
@@ -25,11 +25,6 @@ public class RelayEntity extends TileEntity {
             Relay relay = (Relay) block;
             maxBindableBumps = relay.getMaxBindableBumps();
         }
-    }
-
-    public void refreshBumps() {
-        // TODO: 刷新突触数量
-        markDirty();
     }
 
     protected void update(NBTTagCompound compound) {
