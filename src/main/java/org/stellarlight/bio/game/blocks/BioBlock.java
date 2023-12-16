@@ -10,7 +10,7 @@ import org.stellarlight.bio.game.init.ModItems;
 import org.stellarlight.bio.game.items.BioBlockItem;
 
 public abstract class BioBlock extends Block {
-    protected BioBlockItem item;
+    protected final BioBlockItem item;
 
     public BioBlock() {
         super(Material.IRON);

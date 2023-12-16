@@ -12,6 +12,9 @@ import net.minecraft.world.World;
 import org.stellarlight.bio.game.entities.BumpsEntity;
 import org.stellarlight.bio.game.entities.RelayEntity;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 public class Transmitters extends BioItem {
     @Override
     public String getName() {
@@ -19,14 +22,16 @@ public class Transmitters extends BioItem {
     }
 
     @Override
+    @Nonnull
+    @ParametersAreNonnullByDefault
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
         ActionResult<ItemStack> result = super.onItemRightClick(worldIn, playerIn, handIn);
         ItemStack stack = result.getResult();
 
+        RayTraceResult target = playerIn.rayTrace(100, 1);
         NBTTagCompound compound = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
 
-        RayTraceResult target = playerIn.rayTrace(100, 1);
-        if (target != null && target.typeOfHit == RayTraceResult.Type.BLOCK) {
+        if (target != null && compound != null && target.typeOfHit == RayTraceResult.Type.BLOCK) {
             BlockPos blockPos = target.getBlockPos();
             TileEntity targetEntity = worldIn.getTileEntity(blockPos);
 
@@ -34,11 +39,13 @@ public class Transmitters extends BioItem {
                 int[] relayPos = compound.getIntArray("relay");
 
                 if (relayPos.length == 3 && targetEntity instanceof BumpsEntity) {
-                    TileEntity relayEntity = worldIn.getTileEntity(new BlockPos(relayPos[0], relayPos[1], relayPos[2]));
+                    TileEntity storedEntity = worldIn.getTileEntity(new BlockPos(relayPos[0], relayPos[1], relayPos[2]));
 
-                    if (relayEntity instanceof RelayEntity) {
-                        RelayEntity relay = (RelayEntity) relayEntity;
-                        relay.getBindingBumps().add((BumpsEntity) targetEntity);
+                    if (storedEntity instanceof RelayEntity) {
+                        RelayEntity relayEntity = (RelayEntity) storedEntity;
+                        BumpsEntity bumpsEntity = (BumpsEntity) targetEntity;
+
+                        bumpsEntity.setRelay(relayEntity);
                     }
                 }
             }
@@ -53,7 +60,6 @@ public class Transmitters extends BioItem {
         }
 
         stack.setTagCompound(compound);
-
         return result;
     }
 }

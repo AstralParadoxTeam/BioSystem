@@ -10,16 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GridMapper {
-    protected World world;
-    protected BlockPos currentPos;
-    protected Function<TileEntity, Boolean> callback;
+    protected final World currentWorld;
+    protected final BlockPos currentPos;
+    protected final Function<TileEntity, Boolean> checker;
 
-    List<TileEntity> scannedEntities = new ArrayList<>();
+    final List<TileEntity> scannedEntities = new ArrayList<>();
 
     public GridMapper(World world, BlockPos startPos, Function<TileEntity, Boolean> callback) {
-        this.world = world;
-        this.currentPos = startPos;
-        this.callback = callback;
+        currentWorld = world;
+        currentPos = startPos;
+        checker = callback;
     }
 
     public void scan() {
@@ -29,13 +29,13 @@ public class GridMapper {
     public void scan(BlockPos pos) {
         for (EnumFacing facing : EnumFacing.values()) {
             BlockPos neighborPos = pos.offset(facing);
-            TileEntity neighborEntity = world.getTileEntity(neighborPos);
+            TileEntity neighborEntity = currentWorld.getTileEntity(neighborPos);
 
             if (scannedEntities.contains(neighborEntity)) {
                 continue;
             }
 
-            if (neighborEntity != null && callback.apply(neighborEntity)) {
+            if (neighborEntity != null && checker.apply(neighborEntity)) {
                 scannedEntities.add(neighborEntity);
                 scan(neighborPos);
             }

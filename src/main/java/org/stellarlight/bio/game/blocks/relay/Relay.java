@@ -25,21 +25,22 @@ public abstract class Relay extends BioBlock implements ITileEntityProvider {
     @Override
     public void register() {
         super.register();
-        GameRegistry.registerTileEntity(RelayEntity.class, this.getRegistryName());
+        GameRegistry.registerTileEntity(RelayEntity.class, getRegistryName());
     }
 
     public abstract int getMaxTransmitDistance();
 
     public abstract int getMaxBindableBumps();
 
-    @Nullable
     @Override
+    @Nullable
+    @ParametersAreNonnullByDefault
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new RelayEntity();
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         playerIn.openGui(BioSystem.instance, getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;

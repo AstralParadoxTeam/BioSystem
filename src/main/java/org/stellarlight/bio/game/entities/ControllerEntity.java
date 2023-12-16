@@ -5,14 +5,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import org.stellarlight.bio.game.blocks.controller.Controller;
-import org.stellarlight.bio.game.network.BioNetwork;
 import org.stellarlight.bio.game.util.GridMapper;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ControllerEntity extends TileEntity implements ITickable {
-    protected BioNetwork network = new BioNetwork();
+    protected final List<RelayEntity> relays = new ArrayList<>();
 
     protected String color = "255,255,255";
     protected int storedBio;
@@ -21,12 +21,8 @@ public class ControllerEntity extends TileEntity implements ITickable {
         return storedBio;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public BioNetwork getNetwork() {
-        return network;
+    public List<RelayEntity> getRelays() {
+        return relays;
     }
 
     @Override
@@ -48,12 +44,10 @@ public class ControllerEntity extends TileEntity implements ITickable {
             maxBindableRelayCount = 0;
         }
 
-        network.clear();
+        relays.clear();
 
         new GridMapper(world, pos, entity -> {
             if (entity instanceof ControllerEntity) {
-                List<ControllerEntity> controllers = network.getControllers();
-                controllers.add((ControllerEntity) entity);
                 return true;
             }
 
@@ -62,8 +56,6 @@ public class ControllerEntity extends TileEntity implements ITickable {
             }
 
             if (entity instanceof RelayEntity) {
-                List<RelayEntity> relays = network.getRelays();
-
                 if (relays.size() < maxBindableRelayCount) {
                     relays.add((RelayEntity) entity);
                 }
@@ -76,12 +68,7 @@ public class ControllerEntity extends TileEntity implements ITickable {
     }
 
     @Override
-    public void onChunkUnload() {
-        network.getControllers().remove(this);
-    }
-
     @Nonnull
-    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         compound.setString("color", color);
         compound.setInteger("storedBio", storedBio);

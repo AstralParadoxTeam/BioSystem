@@ -11,20 +11,20 @@ import org.stellarlight.bio.game.entities.RelayEntity;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 public class RelayGui extends GuiContainer {
-    protected final Relay block;
-    protected final RelayEntity entity;
+    protected final Relay relay;
+    protected final RelayEntity relayEntity;
 
     public RelayGui(Block block, TileEntity entity) {
         super(new Container() {
-            @ParametersAreNonnullByDefault
             @Override
+            @ParametersAreNonnullByDefault
             public boolean canInteractWith(EntityPlayer playerIn) {
                 return block instanceof Relay && entity instanceof RelayEntity;
             }
         });
 
-        this.block = (Relay) block;
-        this.entity = (RelayEntity) entity;
+        relay = (Relay) block;
+        relayEntity = (RelayEntity) entity;
     }
 
     @Override
@@ -36,6 +36,7 @@ public class RelayGui extends GuiContainer {
 
         drawDefaultBackground();
         drawRect(baseX - width, baseY - height, baseX + width, baseY + height, 0x2c3e50ff);
-        drawString(fontRenderer, String.format("已绑定突触: %d/%d", entity.getBindingBumps().size(), block.getMaxBindableBumps()), baseX - width + 10, baseY - height + fontRenderer.FONT_HEIGHT + 2, 0xffffffff);
+        drawString(fontRenderer, String.format("已绑定突触: %d/%d", relayEntity.getBoundBumpsCount(), relay.getMaxBindableBumps()), baseX - width + 10, baseY - height + fontRenderer.FONT_HEIGHT + 2, 0xffffffff);
+        drawString(fontRenderer, String.format("最远传输: %d", relay.getMaxTransmitDistance()), baseX - width + 10, baseY - height + (fontRenderer.FONT_HEIGHT * 2) + 2, 0xffffffff);
     }
 }

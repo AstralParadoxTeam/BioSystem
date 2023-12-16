@@ -13,6 +13,7 @@ import org.stellarlight.bio.game.entities.BumpsEntity;
 import org.stellarlight.bio.game.items.Transmitters;
 
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public class Bumps extends BioBlock implements ITileEntityProvider {
     @Override
@@ -21,6 +22,7 @@ public class Bumps extends BioBlock implements ITileEntityProvider {
     }
 
     @Override
+    @ParametersAreNonnullByDefault
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         return playerIn.getHeldItem(hand).getItem() instanceof Transmitters;
     }
@@ -31,8 +33,9 @@ public class Bumps extends BioBlock implements ITileEntityProvider {
         GameRegistry.registerTileEntity(BumpsEntity.class, getRegistryName());
     }
 
-    @Nullable
     @Override
+    @Nullable
+    @ParametersAreNonnullByDefault
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new BumpsEntity();
     }

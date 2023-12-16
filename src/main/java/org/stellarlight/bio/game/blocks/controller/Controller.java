@@ -24,8 +24,8 @@ public abstract class Controller extends BioBlock implements ITileEntityProvider
 
     abstract public int getMaxBindableRelay();
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new ControllerEntity();
     }
@@ -33,11 +33,11 @@ public abstract class Controller extends BioBlock implements ITileEntityProvider
     @Override
     public void register() {
         super.register();
-        GameRegistry.registerTileEntity(ControllerEntity.class, this.getRegistryName());
+        GameRegistry.registerTileEntity(ControllerEntity.class, getRegistryName());
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         playerIn.openGui(BioSystem.instance, getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;

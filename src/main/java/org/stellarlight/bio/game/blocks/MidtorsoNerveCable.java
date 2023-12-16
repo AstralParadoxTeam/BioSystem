@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.stellarlight.bio.game.entities.MidtorsoNerveCableEntity;
 
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public class MidtorsoNerveCable extends BioBlock implements ITileEntityProvider {
     @Override
@@ -17,11 +18,12 @@ public class MidtorsoNerveCable extends BioBlock implements ITileEntityProvider 
     @Override
     public void register() {
         super.register();
-        GameRegistry.registerTileEntity(MidtorsoNerveCableEntity.class, this.getRegistryName());
+        GameRegistry.registerTileEntity(MidtorsoNerveCableEntity.class, getRegistryName());
     }
 
-    @Nullable
     @Override
+    @Nullable
+    @ParametersAreNonnullByDefault
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new MidtorsoNerveCableEntity();
     }
